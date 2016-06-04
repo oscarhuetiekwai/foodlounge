@@ -71,6 +71,8 @@ require('./routes/storeReviews.js')( app_params );
 require('./routes/menus.js')( app_params );
 require('./routes/bookings.js')( app_params );
 require('./routes/bookingItems.js')( app_params );
+require('./routes/socials.js')( app_params );
+require('./routes/socialComments.js')( app_params );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

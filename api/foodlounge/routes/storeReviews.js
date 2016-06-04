@@ -26,7 +26,7 @@ module.exports = function( app_params ) {
       var reply = { code: 1, data: {msg: 'Error'} };
       var store_review = {
         id: ( 'id' in req.body ) ? req.body.id : 0 ,
-        user_id: req.session.user.id,
+        user_id: ('user_id' in req.body ) ? req.body.user_id : req.session.user.id,
         store_id: ( 'store_id' in req.body ) ? req.body.store_id : '',
         review: ( 'review' in req.body ) ? req.body.review : '',
         rating: ( 'rating' in req.body ) ? req.body.rating : ''

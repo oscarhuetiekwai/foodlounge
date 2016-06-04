@@ -18,6 +18,56 @@ module.exports = function( app_params ) {
         res.send( reply );
       });
     })
+    .post('/menus/all', function( req, res ) {
+      console.log('/menus/all');
+      var reply = { code: 1, data: {msg: 'Error'} };
+      menusService.getAllMenus(function( err, data ) {
+        if ( err ) {
+          reply.code = 1;
+          reply.data = err;
+        } else {
+          reply.code = 0;
+          reply.data = data;
+        }
+
+        res.send( reply );
+      });
+    })
+    .post('/menus/shakeit', function( req, res ) {
+      console.log('/menus/shakeit');
+      var reply = { code: 1, data: {msg: 'Error'} };
+      menusService.getAllMenus(function( err, data ) {
+        if ( err ) {
+          reply.code = 1;
+          reply.data = err;
+        } else {
+          reply.code = 0;
+          reply.data = [];
+
+          do {
+            var idx = Math.floor((Math.random() * data.length));
+            var menu = data[idx];
+
+            console.log('/menus/shakeit random idx ', idx );
+            console.log('/menus/shakeit random menu ', menu );
+
+            var found = false;
+            for( var data_idx = 0; data_idx < reply.data.length; data_idx++ ) {
+              var shake_menu = reply.data[data_idx];
+              console.log('/menus/shakeit menu: ', shake_menu);
+              if ( shake_menu.id === menu.id ) {
+                found = true;
+                break;
+              }
+            }
+
+            if ( !found ) reply.data.push( menu );
+          } while ( reply.data.length < 3 );
+        }
+
+        res.send( reply );
+      });
+    })
     .post('/menus/save', function( req, res ) {
       console.log('/menus/save req.body: ', req.body );
       console.log('/menus/save user: ', req.session.user );

@@ -1,3 +1,30 @@
 <ion-view title="Add Menu Item" id="page22" class=" ">
-    <ion-content padding="true" class="has-header"></ion-content>
+  <ion-content padding="true" class="has-header">
+
+      <ion-list id="addMenuItem-list12" class=" ">
+          <ion-item class="item-divider " id="addMenuItem-list-item-divider4">
+            <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+            <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
+          </ion-item>
+      </ion-list>
+      <form id="addMenuItem-form7" class="list ">
+          <ion-item class="item-divider " id="addMenuItem-list-item-divider2">Item Details</ion-item>
+          <label class="item item-input " id="addMenuItem-input10">
+              <span class="input-label">Name</span>
+              <input type="text" placeholder="">
+          </label>
+          <ion-radio id="addMenuItem-radio4" class=" ">Food</ion-radio>
+          <ion-radio id="addMenuItem-radio5" class=" ">Drinks</ion-radio>
+          <ion-item class="range range-positive " id="addMenuItem-range1">Price
+              <input type="range" value="50" min="0" max="100">
+          </ion-item>
+          <ion-item class="item-divider " id="addMenuItem-list-item-divider3">Description</ion-item>
+          <label class="item item-input " id="addMenuItem-textarea1">
+              <span class="input-label"></span><textarea placeholder=""></textarea>
+          </label>
+          <button style="border-radius:50px 50px 50px 50px;" class=" button button-assertive  button-block " ng-click="takePicture()">Take Picture</button>
+            <button id="addMenuItem-button14" style="border-radius:50px 50px 50px 50px;" class=" button button-assertive  button-block ">Save</button>
+      </form>
+
+  </ion-content>
 </ion-view>

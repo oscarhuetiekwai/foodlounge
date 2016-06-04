@@ -13,7 +13,7 @@ module.exports = function( app_params ) {
           reply.code = 0;
           reply.data = data;
         }
-        
+
         res.send( reply );
       });
     })
@@ -33,6 +33,24 @@ module.exports = function( app_params ) {
 
         res.send( reply );
       });
+    })
+    .post('/stores/info/:store_id', function( req, res) {
+      console.log('/stores/info req.body: ', req.body );
+      console.log('/stores/info store_id: ', req.params.store_id );
+      var reply = { code: 1, data: {msg: 'Error'} };
+
+      storesService.info( req.params.store_id, function( err, data ) {
+        if ( err ) {
+          reply.code = 1;
+          reply.data = err;
+        } else {
+          reply.code = 0;
+          reply.data = data;
+        }
+
+        res.send( reply );
+      });
+
     })
     .post('/stores/search', function( req, res ) {
       console.log('/stores req.body: ', req.body );

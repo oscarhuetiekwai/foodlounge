@@ -69,6 +69,8 @@ require('./routes/users.js')( app_params );
 require('./routes/stores.js')( app_params );
 require('./routes/storeReviews.js')( app_params );
 require('./routes/menus.js')( app_params );
+require('./routes/bookings.js')( app_params );
+require('./routes/bookingItems.js')( app_params );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

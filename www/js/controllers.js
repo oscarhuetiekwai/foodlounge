@@ -1,6 +1,43 @@
 angular.module('app.controllers', [])
 
-.controller('mapCtrl', function($scope, $state, $cordovaGeolocation) {
+.controller('mapCtrl', function($scope,$http, $state, $cordovaGeolocation,$cordovaLaunchNavigator,$timeout) {
+  /*shake start */
+  // Device Ready
+
+document.addEventListener("deviceready", function() {
+        var onShake = function() {
+          $http({method : 'POST',	url : 'http://api.gaekjuhub.com/menus/shakeit',withCredentials: true,headers: {'Content-Type': 'application/json; charset=utf-8'}})
+          .then(function successCallback(response) {
+          $scope.shakedata = response.data.data;
+          console.log('shake data: ',  $scope.shakedata);
+          },
+          function errorCallback(response) {
+          });
+
+        };
+
+
+
+
+    // Start watching for shake gestures and call "onShake"
+    // with a shake sensitivity of 40 (optional, default 30)
+    shake.startWatch(onShake, 30);
+});
+  /*shake end */
+
+  /*user navigation to shop start*/
+  $scope.launchNavigator = function() {
+    console.log('launch navigation');
+    var destination = [3.141760, 101.711077];
+	var start = "petaling jaya";
+    $cordovaLaunchNavigator.navigate(destination, start).then(function() {
+
+    }, function (err) {
+      console.error(err);
+      console.log('error!!');
+    });
+  };
+  /*user navigation to shop end*/
   /* user map start */
   var options = {timeout: 10000, enableHighAccuracy: true};
 
@@ -81,7 +118,26 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('orderListCtrl', function($scope) {
+.controller('orderListCtrl', function($scope,$cordovaBarcodeScanner) {
+
+  document.addEventListener("deviceready", function () {
+    /*table scan qrcode start*/
+
+$scope.scanTable = function() {
+  console.log('qrcode scanning.....');
+    $cordovaBarcodeScanner
+      .scan()
+      .then(function(barcodeData) {
+        console.log('tableNo:',barcodeData);
+        // Success! Barcode data is here
+      }, function(error) {
+        // An error occurred
+      });
+
+}
+  }, false);
+
+  /*table scan qrcode end*/
 
 })
 

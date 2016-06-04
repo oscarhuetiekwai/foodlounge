@@ -146,6 +146,52 @@ angular.module('app.routes', [])
     controller: 'bookingCtrl'
   })
 
+  .state('tabsController.store', {
+    url: '/page18',
+    views: {
+      'tab5': {
+        templateUrl: 'templates/store.html',
+        controller: 'storeCtrl'
+      }
+    }
+  })
+
+  .state('tabsController.menu2', {
+    url: '/page19',
+    views: {
+      'tab6': {
+        templateUrl: 'templates/menu2.html',
+        controller: 'menu2Ctrl'
+      }
+    }
+  })
+
+  .state('tabsController.schedule', {
+    url: '/page20',
+    views: {
+      'tab7': {
+        templateUrl: 'templates/schedule.html',
+        controller: 'scheduleCtrl'
+      }
+    }
+  })
+
+  .state('reviews', {
+    url: '/page21',
+    templateUrl: 'templates/reviews.html',
+    controller: 'reviewsCtrl'
+  })
+
+  .state('tabsController.addMenuItem', {
+    url: '/page22',
+    views: {
+      'tab6': {
+        templateUrl: 'templates/addMenuItem.html',
+        controller: 'addMenuItemCtrl'
+      }
+    }
+  })
+
 $urlRouterProvider.otherwise('/dashboard')
 
   

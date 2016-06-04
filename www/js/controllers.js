@@ -59,4 +59,24 @@ angular.module('app.controllers', [])
 .controller('bookingCtrl', function($scope) {
 
 })
+   
+.controller('storeCtrl', function($scope) {
+
+})
+   
+.controller('menu2Ctrl', function($scope) {
+
+})
+   
+.controller('scheduleCtrl', function($scope) {
+
+})
+   
+.controller('reviewsCtrl', function($scope) {
+
+})
+   
+.controller('addMenuItemCtrl', function($scope) {
+
+})
  

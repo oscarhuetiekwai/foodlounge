@@ -7,10 +7,10 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-    
-  
 
-      .state('tabsController.map', {
+
+
+  .state('tabsController.map', {
     url: '/map',
     views: {
       'tab1': {
@@ -39,7 +39,7 @@ angular.module('app.routes', [])
   .state('tabsController', {
     url: '/tab',
     templateUrl: 'templates/tabsController.html',
-    abstract:true
+    controller: 'tabsController'
   })
 
   .state('login', {
@@ -61,7 +61,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController.foodStall', {
-    url: '/fooddetails',
+    url: '/fooddetails/:id',
     views: {
       'tab1': {
         templateUrl: 'templates/foodStall.html',
@@ -71,7 +71,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController.orderNow', {
-    url: '/ordernow',
+    url: '/ordernow/:id',
     views: {
       'tab1': {
         templateUrl: 'templates/orderNow.html',
@@ -91,7 +91,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController.checkOut', {
-    url: '/checkout',
+    url: '/checkout/:id',
     views: {
       'tab1': {
         templateUrl: 'templates/checkOut.html',
@@ -101,7 +101,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController.receipt', {
-    url: '/receipt',
+    url: '/receipt/:id',
     views: {
       'tab1': {
         templateUrl: 'templates/receipt.html',
@@ -121,7 +121,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController.foodStallReviews', {
-    url: '/foodstallreviews',
+    url: '/foodstallreviews/:id',
     views: {
       'tab1': {
         templateUrl: 'templates/foodStallReviews.html',
@@ -131,7 +131,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController.loungeComment', {
-    url: '/loungecomment',
+    url: '/loungecomment/:id',
     views: {
       'tab4': {
         templateUrl: 'templates/loungeComment.html',
@@ -139,6 +139,7 @@ angular.module('app.routes', [])
       }
     }
   })
+
 
   .state('booking', {
     url: '/booking',
@@ -194,6 +195,6 @@ angular.module('app.routes', [])
 
 $urlRouterProvider.otherwise('/dashboard')
 
-  
+
 
 });

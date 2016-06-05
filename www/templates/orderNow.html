@@ -1,23 +1,23 @@
 <ion-view title="Order Now" id="page9" class=" ">
     <ion-content padding="false" class="has-header">
+      <form ng-submit="ordernow()">
         <ion-list id="orderNow-list11" class=" ">
-            <ion-item class="item-thumbnail-left  " id="orderNow-list-item71">
-                <h2>Curry Fish head</h2>
-                <p>RM 15</p>
-            </ion-item>
-            <ion-item class="item-thumbnail-left  " id="orderNow-list-item78">
-                <h2>Curry Fish head</h2>
-                <p>RM 15</p>
-            </ion-item>
-            <ion-item class="item-thumbnail-left  " id="orderNow-list-item79">
-                <h2>Curry Fish head</h2>
-                <p>RM 15</p>
-            </ion-item>
-            <ion-item class="item-thumbnail-left  " id="orderNow-list-item80">
-                <h2>Curry Fish head</h2>
-                <p>RM 15</p>
+            <ion-item class="item-thumbnail-left  " id="orderNow-list-item71" ng-repeat="menu in menus | filter:name">
+                <img ng-src="http://api.gaekjuhub.com/uploads/products/product{{menu.id}}.jpg" style="width:100%;" />
+                <h2 >{{menu.name}}</h2>
+                <p>RM {{menu.price}} x {{menu.quantity}} = {{total = menu.price * menu.quantity   | currency:"RM "}}</p>
+                 <input type="hidden" ng-model="menu.quantity" />
+                 <input type="hidden" ng-model="menu.id" value="{{menu.id}}" />
+                 <button type="button" class="button button-small button-assertive"  ng-click="addQuantity(menu)">
+                  <i class="icon ion-plus-round"></i>
+                </button>
+                <button type="button" class="button button-small button-assertive"  ng-click="subQuantity(menu)" ng-show="menu.quantity >= 1">
+                  <i class="icon ion-minus-round"></i>
+                </button>
             </ion-item>
         </ion-list>
-        <a ui-sref="tabsController.checkOut" id="orderNow-button24" class=" button button-assertive  button-block icon-right ion-android-checkbox-outline ">Check Out</a>
+
+        <button type="submit" id="orderNow-button24" class=" button button-assertive  button-block icon-right ion-android-checkbox-outline ">Check Out</button>
+      </form>
     </ion-content>
 </ion-view>

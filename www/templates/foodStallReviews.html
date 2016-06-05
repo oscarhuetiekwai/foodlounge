@@ -1,30 +1,33 @@
 <ion-view title="Food Stall Reviews" id="page14" class=" ">
     <ion-content padding="false" class="has-header">
+        <button id="lounge-button9" class=" button button-assertive  button-block " ng-click="modal.show()">Add Review</button>
+
         <ion-list id="foodStallReviews-list19" class=" ">
-            <ion-item class="item-avatar  " id="foodStallReviews-list-item103">
+            <ion-item class="item-avatar  " id="foodStallReviews-list-item103"  ng-repeat="storesreview in storesreviews">
+                 <img ng-src="http://api.gaekjuhub.com/uploads/profiles/profile2.jpg" />
                 <h2>Oscar</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
-            </ion-item>
-            <ion-item class="item-avatar  " id="foodStallReviews-list-item104">
-                <h2>Oscar</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
-            </ion-item>
-            <ion-item class="item-avatar  " id="foodStallReviews-list-item105">
-                <h2>Oscar</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
-            </ion-item>
-            <ion-item class="item-avatar  " id="foodStallReviews-list-item106">
-                <h2>Oscar</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
-            </ion-item>
-            <ion-item class="item-avatar  " id="foodStallReviews-list-item107">
-                <h2>Oscar</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
-            </ion-item>
-            <ion-item class="item-avatar  " id="foodStallReviews-list-item108">
-                <h2>Oscar</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
+                <p style="white-space:normal;">{{storesreview.review}}</p>
             </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
+
+<script id="templates/addreview.html" type="text/ng-template">
+  <ion-modal-view >
+    <ion-header-bar class="bar bar-header bar-assertive">
+      <h1 class="title">Add Review</h1>
+      <button class="button button-assertive" ng-click="modal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <form ng-submit="postreview()">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Review</span>
+             <textarea placeholder="Review" ng-model="data.review"></textarea>
+            </label>
+            <button class="button button-full button-assertive" type="submit">Post Review</button>
+          </div>
+        </form>
+    </ion-content>
+  </ion-modal-view>
+</script>

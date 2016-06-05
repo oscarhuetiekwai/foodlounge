@@ -15,4 +15,19 @@ angular.module('app.services', [])
       }
    }
 
-});
+})
+.factory('Markers', function($http) {
+
+  var markers = [];
+
+  return {
+    getMarkers: function(){
+
+      return $http.post("http://api.gaekjuhub.com/stores").then(function(response){
+          markers = response;
+          return markers;
+      });
+
+    }
+  }
+})

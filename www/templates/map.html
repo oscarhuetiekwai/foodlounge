@@ -1,16 +1,41 @@
 <ion-view title="Map" id="page2" class=" ">
     <ion-content padding="false" class="has-header">
-      <h2>food</h2>
-      <tr ng-repeat="shake in shakedata">
-        <td>{{shake.name}}</td>
-      </tr>
         <form id="map-form5" class="list ">
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
                 <input ng-model="startnav" type="search" placeholder="Search Location/Restaurant">
             </label>
-              <button ng-click="launchNavigator()" style="border-radius:50px 50px 50px 50px;" class=" button button-assertive  button-block ">Go to shop</button>
         </form>
           <div id="fl_map" data-tap-disabled="true"></div>
     </ion-content>
 </ion-view>
+
+<script id="templates/shakeresult.html" type="text/ng-template">
+  <ion-modal-view >
+    <ion-header-bar class="bar bar-header bar-assertive">
+      <h1 class="title">Suggested Food</h1>
+      <button class="button button-assertive" ng-click="modal.hide()"><i class="icon ion-close-round"></button></i>
+    </ion-header-bar>
+    <!-- shake result repeat -->
+    <ion-content padding="false">
+      <ul ng-repeat = "shake in shakedata">
+        <li>
+           <ion-item class="item-thumbnail-left item-icon-right" ng-click="modal.hide()" ng-href="#/tab/ordernow/{{shake.store_id}}"  id="favourite-list-item8">
+                        <img ng-src="http://api.gaekjuhub.com/uploads/products/product{{shake.id}}.jpg" style="width:100%;" />
+                        <h2 style = "font-weight:bold;">{{shake.name}}</h2>
+                        <p>{{shake.price | currency:"RM "}}<br/>
+                            <button ng-click="launchNavigator()" class='button button-assertive button-small'>Directions</button>
+                        <i class="icon ion-android-arrow-dropright"></i>
+                    </ion-item>
+      </li>
+      </ul>
+    </ion-content>
+
+
+    <!--
+    <div id="foodStall-button-bar9" class=" button-bar ">
+        <a id="foodStall-button36" style="font-size:12px;" class=" button button-assertive  button-block icon-left ion-speakerphone " ng-href="#/tab/foodstallreviews/{{store.id}}">Reviews</a>
+        <button id="foodStall-button37" style="font-size:12px;" class=" button button-assertive  button-block icon-left ion-ios-location ">View Map</button>
+    </div>-->
+  </ion-modal-view>
+</script>

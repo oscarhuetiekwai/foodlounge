@@ -1,21 +1,21 @@
-<ion-view title="Tabs Controller" id="page1" class=" ">
+<ion-view title="Dashboard" id="page1" class=" ">
     <ion-tabs class="tabs-assertive tabs-icon-top Scheule" id="tabsController-tabs1">
-        <ion-tab title="Map" icon="ion-ios-location" href="#/tab/map" id="tabsController-tab1" class=" ">
-            <ion-nav-view name="tab1"></ion-nav-view>
+        <ion-tab title="Map" icon="ion-ios-location"  href="#/tab/map" id="tabsController-tab1" ng-if="showBuyer">
+          <ion-nav-view name="tab1"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="Booking" icon="ion-android-calendar" href="#/tab/orderhistory" id="tabsController-tab3" class=" ">
+        <ion-tab title="Booking"  icon="ion-android-calendar" href="#/tab/orderhistory" id="tabsController-tab3" ng-if="showBuyer">
             <ion-nav-view name="tab3"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="Lounge" icon="ion-ios-people" href="#/tab/lounge" id="tabsController-tab4" class=" ">
+        <ion-tab title="Lounge" icon="ion-ios-people" href="#/tab/lounge" id="tabsController-tab4" ng-if="showBuyer">
             <ion-nav-view name="tab4"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="Store" icon="ion-location" href="#/tab/page18" id="tabsController-tab5" class=" ">
+        <ion-tab title="Store"  icon="ion-location" href="#/tab/page18" id="tabsController-tab5" ng-if="showSeller">
             <ion-nav-view name="tab5"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="Menu" icon="ion-ios-book" href="#/tab/page19" id="tabsController-tab6" class=" ">
+        <ion-tab title="Menu"  icon="ion-ios-book" href="#/tab/page19" id="tabsController-tab6" ng-if="showSeller">
             <ion-nav-view name="tab6"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="Schedule" icon="ion-calendar" href="#/tab/page20" id="tabsController-tab7" class=" ">
+        <ion-tab title="Schedule"   icon="ion-calendar" href="#/tab/page20" id="tabsController-tab7" ng-if="showSeller">
             <ion-nav-view name="tab7"></ion-nav-view>
         </ion-tab>
     </ion-tabs>

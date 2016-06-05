@@ -1,30 +1,32 @@
 <ion-view title="Lounge Comment" id="page15" class=" ">
     <ion-content padding="false" class="has-header">
+         <button id="lounge-button9" class=" button button-assertive  button-block " ng-click="modal.show()">Add Comment</button>
         <ion-list id="loungeComment-list10" class=" ">
-            <ion-item class="item-avatar  " id="loungeComment-list-item98">
-                <h2>Curry Fish Head</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
-            </ion-item>
-            <ion-item class="item-avatar  " id="loungeComment-list-item99">
-                <h2>Curry Fish Head</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
-            </ion-item>
-            <ion-item class="item-avatar  " id="loungeComment-list-item100">
-                <h2>Curry Fish Head</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
-            </ion-item>
-            <ion-item class="item-avatar  " id="loungeComment-list-item101">
-                <h2>Curry Fish Head</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
-            </ion-item>
-            <ion-item class="item-avatar  " id="loungeComment-list-item102">
-                <h2>Curry Fish Head</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
-            </ion-item>
-            <ion-item class="item-avatar  " id="loungeComment-list-item109">
-                <h2>Curry Fish Head</h2>
-                <p style="white-space:normal;">The food is delicious, recommanded you guys come and have a try</p>
+            <ion-item class="item-avatar  " id="loungeComment-list-item98" ng-repeat="loungecomment in loungecomments">
+                <img ng-src="http://api.gaekjuhub.com/uploads/profiles/profile2.jpg" />
+                <h2>Oscar Hue</h2>
+                <p style="white-space:normal;">{{loungecomment.comment}}</p>
             </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
+
+<script id="templates/addcomment.html" type="text/ng-template">
+  <ion-modal-view >
+    <ion-header-bar class="bar bar-header bar-assertive">
+      <h1 class="title">Add Comment</h1>
+      <button class="button button-assertive" ng-click="modal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <form ng-submit="postcomment()">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Comment</span>
+             <textarea placeholder="Comment" ng-model="data.comment"></textarea>
+            </label>
+            <button class="button button-full button-assertive" type="submit">Post Comment</button>
+          </div>  
+        </form>    
+    </ion-content>
+  </ion-modal-view>
+</script>

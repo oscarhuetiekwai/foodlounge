@@ -8,7 +8,7 @@ module.exports = function( app_params ) {
           console.log('bookingItemsService.js error getting connection: ', err );
           callback( err, [] );
         } else {
-          var query = "SELECT * FROM booking_items bi INNER JOIN menus m ON m.id=bi.menu_id WHERE m.store_id=" + mysql.escape( store_id ) +
+          var query = "SELECT *,(SELECT name FROM menus WHERE id=menu_id) AS name FROM booking_items bi INNER JOIN menus m ON m.id=bi.menu_id WHERE m.store_id=" + mysql.escape( store_id ) +
             " AND deleted_at IS NULL;";
 
           console.log('bookingItemsService.js query : ', query );
@@ -25,7 +25,7 @@ module.exports = function( app_params ) {
           console.log('bookingItemsService.js error getting connection: ', err );
           callback( err, [] );
         } else {
-          var query = "SELECT * FROM booking_items WHERE booking_id=" + mysql.escape( booking_id ) +
+          var query = "SELECT *,(SELECT name FROM menus WHERE id=menu_id) AS name FROM booking_items WHERE booking_id=" + mysql.escape( booking_id ) +
             " AND deleted_at IS NULL;";
 
           console.log('bookingItemsService.js query : ', query );
@@ -53,6 +53,29 @@ module.exports = function( app_params ) {
         }
       });
     }, /* save */
+    saveByBatch: function( booking_items, callback ) {
+      var query = "INSERT INTO booking_items(booking_id, menu_id, price, quantity, amount, status ) VALUES ";
+
+      for(var idx = 0; idx < booking_items.length; idx++ ) {
+        var booking_item = booking_items[idx];
+        if ( idx > 0 ) query += ",";
+
+        query += "(" + mysql.escape( booking_item.booking_id ) + ", " + mysql.escape( booking_item.menu_id ) +
+          ", " + mysql.escape( booking_item.price ) + ", " + mysql.escape( booking_item.quantity ) + ", " +
+          mysql.escape( booking_item.amount ) + ", " + mysql.escape( booking_item.status ) + ")";
+      }
+
+      app_params.mysql_pool.getConnection( function( err, connection ) {
+        if ( err )  {
+          console.log('bookingItemsService.js error getting connection: ', err );
+          callback( err, [] );
+        } else {
+          connection.query( query, function( err, rows ) {
+            callback( err, rows );
+          });
+        }
+      });
+    }, /* saveByBatch */
     update: function( booking_item, callback ) {
       app_params.mysql_pool.getConnection( function( err, connection ) {
         if ( err )  {

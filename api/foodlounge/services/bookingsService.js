@@ -39,8 +39,8 @@ module.exports = function( app_params ) {
           console.log('bookingsService.js error getting connection: ', err );
           callback( err, [] );
         } else {
-          var query = "INSERT INTO bookings( user_id, total ) values (" + mysql.escape( booking.user_id) +
-            ", " + mysql.escape( booking.total )+ ");";
+          var query = "INSERT INTO bookings( user_id, table_loc, total ) values (" + mysql.escape( booking.user_id) +
+            ", " + mysql.escape( booking.table_loc ) + ", " + mysql.escape( booking.total )+ ");";
 
           connection.query( query, function( err, rows ) {
             callback( err, rows );
@@ -56,8 +56,8 @@ module.exports = function( app_params ) {
         } else {
           var query = "UPDATE bookings SET user_id=" + mysql.escape( booking.user_id ) +
             ", total=" + mysql.escape( booking.total ) + ", updated_at=CURRENT_TIMESTAMP " +
-            " WHERE id=" + mysql.escape( booking.id );
-            
+            ", table_loc=" + mysql.escape( booking.table_loc ) + " WHERE id=" + mysql.escape( booking.id );
+
           connection.query( query, function( err, rows ) {
             callback( err, rows );
           });
